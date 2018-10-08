@@ -34,7 +34,7 @@ function highlightParas(containing){
     }
 }
 
-highlightParas('unique');
+//highlightParas('unique');
 
 function removeParaHighlights(){
     const paras = document.querySelectorAll('p.highlight');
@@ -43,3 +43,18 @@ function removeParaHighlights(){
     }
 }
 
+const highlightActions = document.querySelectorAll('[data-action = "highlight"]');
+for(let a of highlightActions){
+    a.addEventListener('click', evt => {
+        evt.preventDefault(); //기본 이벤트 핸들러를 막는다.
+        highlightParas(a.dataset.containing);
+    });
+}
+
+const removeHighlightActions = document.querySelectorAll('[data-action = "removeHighlights"]');
+for(let a of removeHighlightActions){
+    a.addEventListener('click', evt => {
+        evt.preventDefault(); //기본 이벤트 핸들러를 막는다.
+        removeParaHighlights();
+    });
+}
